@@ -1,0 +1,42 @@
+# Cubase projects and backups
+*.cpr
+*.bak
+*.csh
+*.peak
+*.reapeaks
+
+# Raw and rendered audio: keep locally and back up separately
+audio/
+Audio/
+Edits/
+Images/
+renders/
+exports/
+*.wav
+*.aif
+*.aiff
+*.flac
+*.mp3
+*.m4a
+
+# Video and archives
+*.mp4
+*.mov
+*.zip
+*.7z
+
+# OS/editor clutter
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+
+# VitePress / Node
+node_modules/
+.vitepress/.temp/
+.vitepress/cache/
+.vitepress/dist/
+
+# Keep small written measurement reports
+!resources/*.csv
+!templates/*.csv
