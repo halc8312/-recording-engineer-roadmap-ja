@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate exam question bank
+        run: npm run questions:check
+
       - name: Build with VitePress
         run: npm run docs:build
 

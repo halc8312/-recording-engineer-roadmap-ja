@@ -16,6 +16,9 @@ hero:
     - theme: alt
       text: 12週間を見る
       link: /ROADMAP
+    - theme: alt
+      text: JAPRS対策
+      link: /exam/
 
 features:
   - icon: 🎛️
@@ -34,13 +37,13 @@ features:
     link: /practice/band-project
     linkText: 課題を開く
   - icon: 📝
-    title: 資格の基礎対策
-    details: 音響・電気・デジタル音声の計算練習と、オリジナル基礎模試40問で弱点を確認します。
-    link: /practice/mock-exam
-    linkText: 模試を開く
+    title: JAPRS独学コース
+    details: 公式の公開範囲に沿った4分野の独自教材と、100問・90分の自動採点模試で弱点を確認します。
+    link: /exam/
+    linkText: 試験コースを開く
   - icon: 📈
     title: 進捗を端末に保存
-    details: 12週間のチェックとメモをブラウザに保存。JSONでバックアップし、別端末へ移せます。
+    details: 実務12週間と試験16週間のチェック・メモをブラウザに保存。JSONで別端末へ移せます。
     link: /progress
     linkText: ダッシュボードを開く
   - icon: 💬
@@ -57,7 +60,7 @@ features:
 <div class="course-facts">
   <div><strong>12週間</strong><span>標準ペース</span></div>
   <div><strong>週5時間</strong><span>忙しい週は分割OK</span></div>
-  <div><strong>40問</strong><span>オリジナル基礎模試</span></div>
+  <div><strong>4分野</strong><span>JAPRS独学コース</span></div>
   <div><strong>3作品</strong><span>作品集の目標</span></div>
 </div>
 
@@ -67,7 +70,7 @@ features:
 2. Cubaseで録音・編集・ミックス・マスタリングを安全に完了する。
 3. 設定値ではなく「何を聴き、なぜ変え、どう確認したか」を記録する。
 4. 自分のバンド曲を、仕事につながるケーススタディへ育てる。
-5. JAPRS「サウンドレコーディング技術認定試験」などを受けるための基礎を作る。
+5. [JAPRS独学コース](/exam/)で4分野を学び、目標ランクに向けた弱点を測る。
 
 ::: tip 最初の45分
 迷ったら[学習ダッシュボード](/progress)を開き、Week 1の「理論」「Cubase実習」「耳トレ」「成果物」を順番に進めてください。

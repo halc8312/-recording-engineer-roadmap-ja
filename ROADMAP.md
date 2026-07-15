@@ -44,7 +44,7 @@
 
 実習：同じ音を0 dB、-6 dB、-12 dBの3段階で書き出し、音量を戻した比較も行う。音量差が音質差に感じられる罠を体験する。
 
-計算：[計算練習](practice/calculations.md)の1〜10。
+計算：[計算練習](practice/calculations.md)の1〜7、17。電気回路の8〜10はWeek 4で扱う。
 
 成果物：周波数、振幅、周期、波長、音圧レベル、dBFSを自分の言葉で1行ずつ説明。
 
@@ -56,13 +56,15 @@
 
 成果物：「録音時24 bitを選ぶ理由」「ditherを最後に一度だけ使う理由」を説明。
 
+計算：[計算練習](practice/calculations.md)の13〜15、18〜19。
+
 ## Week 4：電気音響とマイク {#week-4}
 
-読む：[録音と編集「マイクの基本」](lessons/02-recording-editing.md#microphone-basics)。
+読む：[電気と回路](exam/02-electricity-circuits.md)の直流・Ohmの法則と、[録音と編集「マイクの基本」](lessons/02-recording-editing.md#microphone-basics)。
 
 実習：可能なら同じ音源を、M2のマイク入力とHi-Z/DI入力で比較する。ファンタム電源が不要な機器へむやみに送らない。
 
-計算：オームの法則、直列・並列、電力の基本。
+計算：[計算練習](practice/calculations.md)の8〜10、16。電力と分圧は電気教材の例題も解く。
 
 成果物：mic level / line level / instrument level、balanced / unbalancedの用途表。
 
@@ -116,6 +118,8 @@
 
 実習：FX channelへ1つのreverbと1つのdelayを作り、sendで共有。pre-delayとdecayを曲のテンポに合わせて調整。最後にボーカルと重要パートだけautomation。
 
+計算：[計算練習](practice/calculations.md)の11〜12、20。
+
 成果物：Mix v2、mono fold-down、スマートフォン相当の小型再生でのメモ。
 
 ## Week 11：マスタリングとQC {#week-11}
@@ -130,7 +134,7 @@
 
 読む：[資格・権利・仕事](lessons/05-exam-career.md#japrs-scope)。
 
-実習：[基礎模試40問](practice/mock-exam.md)を90分以内で解き、[解答・解説](practice/mock-exam-answers.md)で採点。正解した問題も根拠を説明できなければ復習対象にする。
+実習：[JAPRS独自問題練習](exam/mock-exam.md)の10問診断を受け、4分野の弱点を記録する。試験コースを一周した後に100問・90分へ進む。正解した問題も根拠を説明できなければ復習対象にする。
 
 成果物：[作品集ケーススタディ](templates/portfolio-case-study.md)を1本完成。資格受験までの弱点上位3分野と、次の90日で作る2作品を決める。
 

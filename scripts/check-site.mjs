@@ -96,6 +96,18 @@ const requiredFiles = [
   'index.html',
   'progress.html',
   'ROADMAP.html',
+  'exam/index.html',
+  'exam/study-plan.html',
+  'exam/mock-exam.html',
+  'exam/01-acoustics-hearing.html',
+  'exam/02-electricity-circuits.html',
+  'exam/03-studio-systems.html',
+  'exam/04-recording-advanced.html',
+  'exam/05-music-theory-instruments.html',
+  'exam/06-copyright-history-staff.html',
+  'exam/07-studio-acoustics-design.html',
+  'exam/quick-reference.html',
+  'exam/glossary.html',
   'practice/cubase-labs.html',
   'practice/mock-exam.html',
   'downloads/progress.csv',
@@ -110,6 +122,18 @@ for (const file of requiredFiles) {
 const css = files.filter((file) => file.endsWith('.css')).map((file) => readFileSync(file, 'utf8')).join('\n')
 if (/url\(["']?https?:\/\//.test(css)) {
   errors.push('external stylesheet resource detected; the learning site should stay self-contained')
+}
+
+const sitemapPath = join(rootPath, 'sitemap.xml')
+if (!existsSync(sitemapPath)) {
+  errors.push('required output missing: sitemap.xml')
+} else if (base !== '/') {
+  const sitemap = readFileSync(sitemapPath, 'utf8')
+  const expectedPrefix = `https://halc8312.github.io${base}`
+  const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1])
+  if (!locations.length || locations.some((location) => !location.startsWith(expectedPrefix))) {
+    errors.push(`sitemap URL missing project base: expected ${expectedPrefix}`)
+  }
 }
 
 if (errors.length) {
