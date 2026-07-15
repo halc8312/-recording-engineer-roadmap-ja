@@ -97,6 +97,7 @@ const requiredFiles = [
   'progress.html',
   'ROADMAP.html',
   'exam/index.html',
+  'exam/past-exam-analysis.html',
   'exam/study-plan.html',
   'exam/mock-exam.html',
   'exam/01-acoustics-hearing.html',
@@ -111,6 +112,7 @@ const requiredFiles = [
   'practice/cubase-labs.html',
   'practice/mock-exam.html',
   'downloads/progress.csv',
+  'downloads/japrs-analysis-2013-2025.xlsx',
   'logo.svg',
   '404.html'
 ]

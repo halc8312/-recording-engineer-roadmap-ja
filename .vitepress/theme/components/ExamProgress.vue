@@ -18,7 +18,7 @@ type Backup = {
 const STORAGE_KEY = 'rec-lab-japrs-progress-v1'
 const tasks = ['教材を読む', '資料なしで説明・計算する', '問題と遅延復習を行う'] as const
 const weeks = [
-  { id: 1, title: '診断と音の三要素', lesson: '/exam/01-acoustics-hearing' },
+  { id: 1, title: '音の三要素と波', lesson: '/exam/01-acoustics-hearing' },
   { id: 2, title: '聴覚・心理音響・ステレオ', lesson: '/exam/01-acoustics-hearing' },
   { id: 3, title: 'dB・波長・位相・音律', lesson: '/exam/01-acoustics-hearing' },
   { id: 4, title: '直流・オームの法則・電力', lesson: '/exam/02-electricity-circuits' },
