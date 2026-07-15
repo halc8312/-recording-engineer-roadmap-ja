@@ -63,6 +63,7 @@ export default defineConfig({
           text: 'JAPRS独学コース',
           items: [
             { text: 'コース案内', link: '/exam/' },
+            { text: '過去問1,300問分析', link: '/exam/past-exam-analysis' },
             { text: '16週間プラン', link: '/exam/study-plan' },
             { text: '出題範囲カバレッジ', link: '/exam/coverage' },
             { text: '独自模試・問題練習', link: '/exam/mock-exam' },
