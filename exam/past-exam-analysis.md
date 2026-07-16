@@ -16,9 +16,13 @@ description: 2013〜2025年のJAPRS公開過去問題を、頻度・共通文・
 初めて測ります。
 :::
 
+::: tip 初めてなら3分版から
+このページは詳細な参考資料です。すぐWeek 1へ進みたい場合は、[初学者3分ガイド](beginner-guide.md)だけ読めば始められます。
+:::
+
 <div class="analysis-actions">
-  <a class="action-link primary" href="./study-plan">16週間プランを始める</a>
-  <a class="action-link" href="./index">教材一覧を見る</a>
+  <a class="action-link primary" href="./beginner-guide.html">3分ガイドから始める</a>
+  <a class="action-link" href="./study-plan.html">16週間プランを見る</a>
   <a class="action-link" href="https://www.japrs.or.jp/exam/soundrecording/range/">公式出題範囲を確認</a>
 </div>
 
@@ -259,7 +263,7 @@ coverageは更新します。
 <ol class="analysis-steps">
   <li><strong>採点せず全体地図を見る</strong><span>このページと公式出題範囲を10〜20分で確認します。</span></li>
   <li><strong>core 12と4分野を一周する</strong><span>16週間プランを使い、計算・routing・長文・暗記を分けます。</span></li>
-  <li><strong>独自問題で練習する</strong><span>10問診断は任意です。未学習時の点数を能力評価に使いません。</span></li>
+  <li><strong>独自問題で練習する</strong><span>10問ウォームアップは任意です。未学習時の点数を能力評価に使いません。</span></li>
   <li><strong>公式過去問題を初見で測る</strong><span>一周後まで未見の年度を残し、100問・90分で初回の実戦到達度を測ります。</span></li>
   <li><strong>family単位で復習する</strong><span>誤答を数字・単位・対象・否定形を変えたvariationへ広げます。</span></li>
 </ol>

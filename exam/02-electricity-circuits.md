@@ -1,4 +1,10 @@
+<script setup lang="ts">
+import LessonResume from '../.vitepress/theme/components/LessonResume.vue'
+</script>
+
 # JAPRS独学 02：電気・交流・オーディオ回路
+
+<LessonResume lesson-path="/exam/02-electricity-circuits" lesson-title="電気・交流・オーディオ回路" />
 
 ## この章のねらい
 
@@ -19,7 +25,7 @@
 > [!NOTE]
 > 2026年度の公式出題範囲と2022〜2025年の公開問題から、繰り返し必要になる概念を抽出して再構成した独自教材です。公式教材や公開問題の文章・図・設問は転載していません。受験年度に範囲が変わる可能性があるため、最後に公式ページも確認してください。
 
-## 1. 電気の基本量
+## 1. 電気の基本量 {#week-4-start}
 
 ### 1.1 電荷・電流・電圧
 
@@ -201,7 +207,7 @@ Vin = 12 V、R1 = 2 kΩ、R2 = 4 kΩ。
 
 </details>
 
-## 3. 直流と交流
+## 3. 直流と交流 {#week-5-start}
 
 ### 3.1 DCとAC
 

@@ -16,24 +16,107 @@ type Backup = {
 }
 
 const STORAGE_KEY = 'rec-lab-japrs-progress-v1'
+const LAST_LEARNING_KEY = 'rec-lab-last-learning-v1'
 const tasks = ['教材を読む', '資料なしで説明・計算する', '問題と遅延復習を行う'] as const
 const weeks = [
-  { id: 1, title: '音の三要素と波', lesson: '/exam/01-acoustics-hearing' },
-  { id: 2, title: '聴覚・心理音響・ステレオ', lesson: '/exam/01-acoustics-hearing' },
-  { id: 3, title: 'dB・波長・位相・音律', lesson: '/exam/01-acoustics-hearing' },
-  { id: 4, title: '直流・オームの法則・電力', lesson: '/exam/02-electricity-circuits' },
-  { id: 5, title: '交流・回路・磁気', lesson: '/exam/02-electricity-circuits' },
-  { id: 6, title: '配線・端子・バランス伝送', lesson: '/exam/03-studio-systems' },
-  { id: 7, title: 'マイク・コンソール・モニター', lesson: '/exam/03-studio-systems' },
-  { id: 8, title: 'テープ・デジタル・クロック', lesson: '/exam/03-studio-systems' },
-  { id: 9, title: 'ステレオ収音とアンサンブル', lesson: '/exam/04-recording-advanced' },
-  { id: 10, title: 'オーバーダブ・ミックス・ライブ', lesson: '/exam/04-recording-advanced' },
-  { id: 11, title: '同期・サラウンド・立体音響', lesson: '/exam/04-recording-advanced' },
-  { id: 12, title: '楽譜・テンポ・音程・楽語', lesson: '/exam/05-music-theory-instruments' },
-  { id: 13, title: '楽器族・構造・音域', lesson: '/exam/05-music-theory-instruments' },
-  { id: 14, title: '著作権・著作隣接権・権利処理', lesson: '/exam/06-copyright-history-staff' },
-  { id: 15, title: '録音史・スタッフ・音響設計', lesson: '/exam/07-studio-acoustics-design' },
-  { id: 16, title: '100問模試と誤答の再学習', lesson: '/exam/mock-exam' }
+  {
+    id: 1,
+    title: '音の三要素と波',
+    lesson: '/exam/01-acoustics-hearing.html#week-1-start',
+    range: '第1〜2節：音の物理量、波・周波数・周期・音速・波長'
+  },
+  {
+    id: 2,
+    title: '聴覚・心理音響・ステレオ',
+    lesson: '/exam/01-acoustics-hearing.html#week-2-start',
+    range: '第7〜10節：聴覚器官、等ラウドネス、マスキング、両耳聴、音色'
+  },
+  {
+    id: 3,
+    title: 'dB・波長・位相・音律',
+    lesson: '/exam/01-acoustics-hearing.html#week-3-start',
+    range: '第2節の式を復習後、第3〜4・11節：dB、位相・干渉、音程・音律・うなり'
+  },
+  {
+    id: 4,
+    title: '直流・オームの法則・電力',
+    lesson: '/exam/02-electricity-circuits.html#week-4-start',
+    range: '第1〜2節：電圧・電流・抵抗・電力、直列・並列・分圧'
+  },
+  {
+    id: 5,
+    title: '交流・回路・磁気',
+    lesson: '/exam/02-electricity-circuits.html#week-5-start',
+    range: '第3〜8節：交流、R/C/L、インピーダンス、フィルター、磁気、伝送と安全'
+  },
+  {
+    id: 6,
+    title: '配線・端子・バランス伝送',
+    lesson: '/exam/03-studio-systems.html#week-6-start',
+    range: '第2〜3節：レベル、ケーブル、端子、DI、バランス伝送、パッチベイ'
+  },
+  {
+    id: 7,
+    title: 'マイク・コンソール・モニター',
+    lesson: '/exam/03-studio-systems.html#week-7-start',
+    range: '第0〜1・4〜5・7節：マイク、信号経路、コンソール、メーター、モニター'
+  },
+  {
+    id: 8,
+    title: 'テープ・デジタル・クロック',
+    lesson: '/exam/03-studio-systems.html#week-8-start',
+    range: '第0.4〜0.5節を復習後、第6・8〜10節：テープ、デジタル、クロック、実機接続'
+  },
+  {
+    id: 9,
+    title: 'ステレオ収音とアンサンブル',
+    lesson: '/exam/04-recording-advanced.html#week-9-start',
+    range: '第1〜4節：録音方式、ペアマイク、オーケストラ、リズム録音'
+  },
+  {
+    id: 10,
+    title: 'オーバーダブ・ミックス・ライブ',
+    lesson: '/exam/04-recording-advanced.html#week-10-start',
+    range: '第5〜7節：オーバーダブ、ミックス／マスタリング、ライブ録音'
+  },
+  {
+    id: 11,
+    title: '同期・サラウンド・立体音響',
+    lesson: '/exam/04-recording-advanced.html#week-11-start',
+    range: '第8〜10節：タイムコード、映像同期、5.1、22.2、イマーシブ音響'
+  },
+  {
+    id: 12,
+    title: '楽譜・テンポ・音程・楽語',
+    lesson: '/exam/05-music-theory-instruments.html#week-12-start',
+    range: '第1〜9節：譜面、拍子、BPM、楽語、音程、調、音律、移調楽器'
+  },
+  {
+    id: 13,
+    title: '楽器族・構造・音域',
+    lesson: '/exam/05-music-theory-instruments.html#week-13-start',
+    range: '第10〜15節：弦・木管・金管・打楽器・鍵盤・声、楽器名と編成'
+  },
+  {
+    id: 14,
+    title: '著作権・著作隣接権・権利処理',
+    lesson: '/exam/06-copyright-history-staff.html#week-14-start',
+    range: '第1〜7節：権利の種類、保護期間、権利制限、バンド制作の確認'
+  },
+  {
+    id: 15,
+    title: '録音史・スタッフ・音響設計',
+    lesson: '/exam/06-copyright-history-staff.html#week-15-start',
+    range: '06の第8〜11節：録音史・制作スタッフ。その後、07の音響設計を全章',
+    extraLesson: '/exam/07-studio-acoustics-design.html#week-15-acoustics',
+    extraLabel: '後半：スタジオ音響設計を開く'
+  },
+  {
+    id: 16,
+    title: '100問模試と誤答の再学習',
+    lesson: '/exam/mock-exam.html#week-16-start',
+    range: '本番形式100問→分野別結果→誤答した教材→再学習計画'
+  }
 ] as const
 
 const progress = ref<WeekProgress[]>(blankProgress())
@@ -135,6 +218,17 @@ function reset() {
   message.value = '進捗をリセットしました。'
 }
 
+function recordLearning(href: string, title: string) {
+  if (typeof window === 'undefined') return
+  try {
+    const record = { href: withBase(href), title, updatedAt: new Date().toISOString() }
+    window.localStorage.setItem(LAST_LEARNING_KEY, JSON.stringify(record))
+    window.dispatchEvent(new CustomEvent('rec-lab:learning-progress', { detail: record }))
+  } catch {
+    message.value = '「続きから」の位置を保存できませんでした。'
+  }
+}
+
 onMounted(() => {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
@@ -164,7 +258,12 @@ watch(progress, save, { deep: true })
       <div class="progressbar" role="progressbar" :aria-valuenow="percent" aria-valuemin="0" aria-valuemax="100">
         <span :style="{ width: `${percent}%` }" />
       </div>
-      <a v-if="nextWeek" class="next-link" :href="withBase(nextWeek.lesson)">
+      <a
+        v-if="nextWeek"
+        class="next-link"
+        :href="withBase(nextWeek.lesson)"
+        @click="recordLearning(nextWeek.lesson, `JAPRS Week ${nextWeek.id}：${nextWeek.title}`)"
+      >
         次：Week {{ nextWeek.id }}「{{ nextWeek.title }}」を開く
       </a>
       <p v-else class="complete">全項目が完了しました。未見問題で定着を確認してください。</p>
@@ -184,15 +283,26 @@ watch(progress, save, { deep: true })
           <small>{{ progress[index].checks.filter(Boolean).length }} / {{ tasks.length }}</small>
         </summary>
         <div class="week-body">
+          <p class="week-scope"><strong>読む範囲</strong><span>{{ week.range }}</span></p>
           <label v-for="(task, taskIndex) in tasks" :key="task">
             <input v-model="progress[index].checks[taskIndex]" type="checkbox">
             <span>{{ task }}</span>
           </label>
           <label class="note">
-            <span>弱点・次に確認すること</span>
-            <textarea v-model="progress[index].note" maxlength="1200" rows="3" placeholder="例：電力比と電圧比のdB式を混同した。2日後に再計算。" />
+            <span>わからない点・気づき・次に確認すること</span>
+            <textarea v-model="progress[index].note" maxlength="1200" rows="3" placeholder="例：dBの2つの式の使い分けを、2日後にもう一度確認する。" />
           </label>
-          <a :href="withBase(week.lesson)">この週の教材を開く</a>
+          <div class="lesson-links">
+            <a
+              :href="withBase(week.lesson)"
+              @click="recordLearning(week.lesson, `JAPRS Week ${week.id}：${week.title}`)"
+            >Week {{ week.id }}の教材を読む</a>
+            <a
+              v-if="'extraLesson' in week"
+              :href="withBase(week.extraLesson)"
+              @click="recordLearning(week.extraLesson, `JAPRS Week ${week.id}：${week.extraLabel}`)"
+            >{{ week.extraLabel }}</a>
+          </div>
         </div>
       </details>
     </div>
@@ -223,15 +333,21 @@ watch(progress, save, { deep: true })
 .week-list summary { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; min-height: 52px; padding: 0 14px; cursor: pointer; }
 .week-list summary span, .week-list summary small { color: var(--vp-c-text-2); font-size: .78rem; }
 .week-body { display: grid; gap: 10px; padding: 4px 14px 16px; }
-.week-body > label:not(.note) { display: flex; gap: 10px; align-items: center; min-height: 40px; }
+.week-scope { display: grid; gap: 3px; margin: 2px 0 4px; padding: 10px 12px; border-radius: 9px; background: var(--vp-c-bg-soft); }
+.week-scope strong { color: var(--vp-c-brand-1); font-size: .75rem; }
+.week-scope span { color: var(--vp-c-text-2); font-size: .84rem; line-height: 1.6; }
+.week-body > label:not(.note) { display: flex; gap: 10px; align-items: center; min-height: 44px; }
 .week-body input[type='checkbox'] { width: 19px; height: 19px; accent-color: var(--vp-c-brand-1); }
 .note { display: grid; gap: 6px; color: var(--vp-c-text-2); font-size: .8rem; font-weight: 700; }
 .note textarea { padding: 10px; border: 1px solid var(--vp-c-divider); border-radius: 9px; color: var(--vp-c-text-1); background: var(--vp-c-bg-soft); font: inherit; resize: vertical; }
+.lesson-links { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.lesson-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
 .backup-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.backup-actions button { min-height: 42px; padding: 0 14px; border: 1px solid var(--vp-c-divider); border-radius: 999px; color: var(--vp-c-text-1); background: var(--vp-c-bg); font: inherit; font-weight: 700; cursor: pointer; }
+.backup-actions button { min-height: 44px; padding: 0 14px; border: 1px solid var(--vp-c-divider); border-radius: 999px; color: var(--vp-c-text-1); background: var(--vp-c-bg); font: inherit; font-weight: 700; cursor: pointer; }
 .backup-actions button.danger { color: var(--vp-c-danger-1); }
 .storage-note { color: var(--vp-c-text-2); font-size: .82rem; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--vp-c-brand-2); outline-offset: 3px; }
+@media (max-width: 767px) { .note textarea { font-size: 16px; } }
 @media (prefers-reduced-motion: reduce) { .progressbar span { transition: none; } }
 </style>

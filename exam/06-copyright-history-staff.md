@@ -1,4 +1,10 @@
+<script setup lang="ts">
+import LessonResume from '../.vitepress/theme/components/LessonResume.vue'
+</script>
+
 # 06 音楽著作権・録音史・制作スタッフ
+
+<LessonResume lesson-path="/exam/06-copyright-history-staff" lesson-title="音楽著作権・録音史・制作スタッフ" />
 
 ## この章の目標
 
@@ -15,7 +21,7 @@
 
 この章も公式教材や公開過去問題の転載ではなく、公開出題範囲で求められる概念を独自の例で学ぶ教材です。
 
-## 1. 一つの曲に複数の権利がある
+## 1. 一つの曲に複数の権利がある {#week-14-start}
 
 完成音源を一つのfileとして見ても、法律上・契約上の対象は一つとは限りません。
 
@@ -212,7 +218,7 @@
 
 市販recordingの一部を使うと、少なくとも元の曲側と元のmaster側の検討が必要です。短ければ必ず自由、加工して分からなければ自由、無料公開なら自由、という一律の秒数ruleはありません。許諾可能なlibrary素材でも、再配布禁止、Content ID、商用範囲、credit条件をlicense原文で確認します。
 
-## 8. 録音・再生mediaの歴史
+## 8. 録音・再生mediaの歴史 {#week-15-start}
 
 歴史は年号だけでなく、「何を可能にしたか」で覚えます。
 
