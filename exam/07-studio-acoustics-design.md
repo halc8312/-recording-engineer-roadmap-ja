@@ -1,4 +1,10 @@
+<script setup lang="ts">
+import LessonResume from '../.vitepress/theme/components/LessonResume.vue'
+</script>
+
 # 07 スタジオ音響設計：遮音・音場・設備・法規
+
+<LessonResume lesson-path="/exam/07-studio-acoustics-design" lesson-title="スタジオ音響設計" />
 
 ## この章の目標
 
@@ -14,7 +20,7 @@
 この章は試験学習用の概説で、建築・消防・電気・労働安全に関する設計図、施工指示、法的助言ではありません。壁の撤去、二重床、換気変更、電源増設、接地変更、防火材料の選定は、建築士・設備設計者・電気工事士・消防機関・建物管理者等へ相談し、所在地の最新法令・条例・用途・規模で確認してください。
 :::
 
-## 1. 遮音と吸音は目的が違う
+## 1. 遮音と吸音は目的が違う {#week-15-acoustics}
 
 | 用語 | 目的 | 代表的な手段 |
 | --- | --- | --- |

@@ -95,8 +95,10 @@ for (const file of htmlFiles) {
 const requiredFiles = [
   'index.html',
   'progress.html',
+  'band-study-plan.html',
   'ROADMAP.html',
   'exam/index.html',
+  'exam/beginner-guide.html',
   'exam/past-exam-analysis.html',
   'exam/study-plan.html',
   'exam/mock-exam.html',

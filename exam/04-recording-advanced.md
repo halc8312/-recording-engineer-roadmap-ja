@@ -1,4 +1,10 @@
+<script setup lang="ts">
+import LessonResume from '../.vitepress/theme/components/LessonResume.vue'
+</script>
+
 # 04 録音技術・映像同期・マルチチャンネル
+
+<LessonResume lesson-path="/exam/04-recording-advanced" lesson-title="録音技術・映像同期・マルチチャンネル" />
 
 ## この章の目標
 
@@ -11,7 +17,7 @@
 
 この章は[JAPRSの2026年度公開出題範囲](https://www.japrs.or.jp/exam/soundrecording/range/)と2022〜2025年の公開問題から、繰り返し現れる概念を抽出して独自に構成しています。公式問題の文章・選択肢・公式教材の説明は転載していません。
 
-## 1. 録音方式を三つの軸で整理する
+## 1. 録音方式を三つの軸で整理する {#week-9-start}
 
 録音方式の名前を覚える前に、次の三つを分けます。
 
@@ -164,7 +170,7 @@ DIとamp micを混ぜる時、amp側には電気・音響の遅れがありま�
 - latencyが演奏を乱す場合はbufferを小さくするだけでなく、direct monitoring、不要plugin停止、cue経路短縮を検討する。
 - clickを大きくしすぎるとmicへ漏れ、演奏者のdynamicも硬くなることがある。
 
-## 5. dubbing（overdub）
+## 5. dubbing（overdub） {#week-10-start}
 
 **overdub**は、すでに録音したtrackを再生しながら新しい演奏を別trackへ録ることです。日本の録音現場では「ダビング」と呼ばれる場合があります。完成音源を単にコピーする意味のdubbingとは文脈で区別します。
 
@@ -228,7 +234,7 @@ FOHは会場の音を作り、recording mixは記録媒体上のbalanceを作り
 - audience micのstand、cable、電源を避難経路へ出さない。
 - 終演直後にfileを閉じ、別媒体へcopyし、開けることを確認。
 
-## 8. timecodeと映像同期
+## 8. timecodeと映像同期 {#week-11-start}
 
 ### 三つの「同期」を分ける
 

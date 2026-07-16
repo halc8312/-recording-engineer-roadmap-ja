@@ -391,7 +391,7 @@ onBeforeUnmount(stopTimer)
         <legend>練習形式</legend>
         <label>
           <input v-model="selectedMode" type="radio" value="quick">
-          <span><strong>10問診断</strong><small>全分野から10問・10分</small></span>
+          <span><strong>10問ウォームアップ（任意）</strong><small>全分野から10問・10分</small></span>
         </label>
         <label>
           <input v-model="selectedMode" type="radio" value="domain">
@@ -427,68 +427,70 @@ onBeforeUnmount(stopTimer)
     </section>
 
     <template v-else-if="phase === 'running' && session && currentQuestion">
-      <section class="exam-toolbar" aria-label="試験の状況">
-        <div>
-          <span>問題 {{ session.currentIndex + 1 }} / {{ sessionQuestions.length }}</span>
-          <span>{{ answeredCount }}問回答済み</span>
+      <div class="exam-running">
+        <section class="exam-toolbar" aria-label="試験の状況">
+          <div>
+            <span>問題 {{ session.currentIndex + 1 }} / {{ sessionQuestions.length }}</span>
+            <span>{{ answeredCount }}問回答済み</span>
+          </div>
+          <strong role="timer" :aria-label="`残り時間 ${formatTime(timeLeft)}`">{{ formatTime(timeLeft) }}</strong>
+        </section>
+        <div class="quiz-progress" role="progressbar" :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100">
+          <span :style="{ width: `${progressPercent}%` }" />
         </div>
-        <strong role="timer" :aria-label="`残り時間 ${formatTime(timeLeft)}`">{{ formatTime(timeLeft) }}</strong>
-      </section>
-      <div class="quiz-progress" role="progressbar" :aria-valuenow="progressPercent" aria-valuemin="0" aria-valuemax="100">
-        <span :style="{ width: `${progressPercent}%` }" />
+
+        <article class="question-card">
+          <p class="question-meta">{{ domainLabels[currentQuestion.domain] }} · {{ currentQuestion.topic }}</p>
+          <h2 ref="questionTitle" tabindex="-1">{{ currentQuestion.prompt }}</h2>
+          <fieldset class="choice-list">
+            <legend class="visually-hidden">回答を1つ選択</legend>
+            <label v-for="(choice, index) in currentQuestion.choices" :key="index">
+              <input
+                type="radio"
+                :name="currentQuestion.id"
+                :checked="session.answers[currentQuestion.id] === index"
+                @change="answer(index)"
+              >
+              <span class="choice-letter">{{ choiceLabel(index) }}</span>
+              <span>{{ choice }}</span>
+            </label>
+          </fieldset>
+
+          <div class="question-actions" aria-label="問題の操作">
+            <button type="button" class="secondary-button" :disabled="session.currentIndex === 0" @click="goTo(session.currentIndex - 1)">前の問題</button>
+            <button type="button" class="flag-button" :aria-pressed="isCurrentFlagged" @click="toggleFlag">
+              {{ isCurrentFlagged ? '見直しを解除' : 'あとで見直す' }}
+            </button>
+            <button
+              v-if="session.currentIndex < sessionQuestions.length - 1"
+              type="button"
+              class="primary-button"
+              @click="goTo(session.currentIndex + 1)"
+            >次の問題</button>
+            <button v-else type="button" class="primary-button" @click="submitExam(false)">採点する</button>
+          </div>
+        </article>
+
+        <details class="question-navigator">
+          <summary>問題一覧・見直し</summary>
+          <div>
+            <button
+              v-for="(question, index) in sessionQuestions"
+              :key="question.id"
+              type="button"
+              :class="{
+                current: index === session.currentIndex,
+                answered: Number.isInteger(session.answers[question.id]),
+                flagged: session.flagged.includes(question.id)
+              }"
+              :aria-label="`問題${index + 1}${Number.isInteger(session.answers[question.id]) ? ' 回答済み' : ' 未回答'}${session.flagged.includes(question.id) ? ' 見直し対象' : ''}`"
+              @click="goTo(index)"
+            >{{ index + 1 }}</button>
+          </div>
+        </details>
+
+        <button type="button" class="submit-button" @click="submitExam(false)">現在の回答を採点する</button>
       </div>
-
-      <article class="question-card">
-        <p class="question-meta">{{ domainLabels[currentQuestion.domain] }} · {{ currentQuestion.topic }}</p>
-        <h2 ref="questionTitle" tabindex="-1">{{ currentQuestion.prompt }}</h2>
-        <fieldset class="choice-list">
-          <legend class="visually-hidden">回答を1つ選択</legend>
-          <label v-for="(choice, index) in currentQuestion.choices" :key="index">
-            <input
-              type="radio"
-              :name="currentQuestion.id"
-              :checked="session.answers[currentQuestion.id] === index"
-              @change="answer(index)"
-            >
-            <span class="choice-letter">{{ choiceLabel(index) }}</span>
-            <span>{{ choice }}</span>
-          </label>
-        </fieldset>
-
-        <div class="question-actions">
-          <button type="button" class="secondary-button" :disabled="session.currentIndex === 0" @click="goTo(session.currentIndex - 1)">前の問題</button>
-          <button type="button" class="flag-button" :aria-pressed="isCurrentFlagged" @click="toggleFlag">
-            {{ isCurrentFlagged ? '見直しを解除' : 'あとで見直す' }}
-          </button>
-          <button
-            v-if="session.currentIndex < sessionQuestions.length - 1"
-            type="button"
-            class="primary-button"
-            @click="goTo(session.currentIndex + 1)"
-          >次の問題</button>
-          <button v-else type="button" class="primary-button" @click="submitExam(false)">採点する</button>
-        </div>
-      </article>
-
-      <details class="question-navigator">
-        <summary>問題一覧・見直し</summary>
-        <div>
-          <button
-            v-for="(question, index) in sessionQuestions"
-            :key="question.id"
-            type="button"
-            :class="{
-              current: index === session.currentIndex,
-              answered: Number.isInteger(session.answers[question.id]),
-              flagged: session.flagged.includes(question.id)
-            }"
-            :aria-label="`問題${index + 1}${Number.isInteger(session.answers[question.id]) ? ' 回答済み' : ' 未回答'}${session.flagged.includes(question.id) ? ' 見直し対象' : ''}`"
-            @click="goTo(index)"
-          >{{ index + 1 }}</button>
-        </div>
-      </details>
-
-      <button type="button" class="submit-button" @click="submitExam(false)">現在の回答を採点する</button>
     </template>
 
     <section v-else-if="phase === 'results' && session" class="results" aria-labelledby="results-title">
@@ -578,14 +580,14 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .quiz-progress { height: 7px; overflow: hidden; margin-bottom: 18px; border-radius: 999px; background: var(--vp-c-divider); }
 .quiz-progress span { display: block; height: 100%; background: var(--vp-c-brand-1); transition: width .2s ease; }
 .question-card h2 { font-size: clamp(1.2rem, 3vw, 1.6rem); line-height: 1.6; }
-.question-card h2:focus { outline: none; }
+.question-card h2:focus-visible { outline: 3px solid var(--vp-c-brand-2); outline-offset: 6px; border-radius: 4px; }
 .choice-list { display: grid; gap: 10px; margin: 24px 0; padding: 0; border: 0; }
 .choice-letter { display: grid; width: 30px; height: 30px; flex: 0 0 auto; place-items: center; border-radius: 50%; background: var(--vp-c-default-soft); font-weight: 800; }
 .question-actions { justify-content: space-between; }
 .question-navigator { margin: 18px 0; padding: 14px; border: 1px solid var(--vp-c-divider); border-radius: 12px; }
 .question-navigator summary { min-height: 44px; font-weight: 700; cursor: pointer; }
 .question-navigator > div { display: grid; grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); gap: 7px; }
-.question-navigator button { min-height: 42px; border: 1px solid var(--vp-c-divider); border-radius: 8px; color: var(--vp-c-text-2); background: var(--vp-c-bg); cursor: pointer; }
+.question-navigator button { min-height: 44px; border: 1px solid var(--vp-c-divider); border-radius: 8px; color: var(--vp-c-text-2); background: var(--vp-c-bg); cursor: pointer; }
 .question-navigator button.answered { border-color: var(--vp-c-brand-2); color: var(--vp-c-text-1); background: var(--vp-c-brand-soft); }
 .question-navigator button.flagged::after { content: ' •'; color: var(--vp-c-warning-1); }
 .question-navigator button.current { outline: 3px solid var(--vp-c-brand-1); outline-offset: 1px; }
@@ -604,9 +606,96 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .review dt { color: var(--vp-c-text-2); font-size: .75rem; font-weight: 700; }
 .review dd { margin: 0; }
 .explanation { padding: 12px; border-radius: 8px; background: var(--vp-c-default-soft); }
+:global(.dark) .primary-button {
+  border-color: #5eead4;
+  color: #062e2a;
+  background: #5eead4;
+}
+:global(.dark) .secondary-button,
+:global(.dark) .flag-button {
+  border-color: var(--vp-c-divider);
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg-alt);
+}
 @media (min-width: 700px) {
   .mode-options { grid-template-columns: repeat(3, 1fr); }
   .domain-results { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .exam-running {
+    padding-bottom: calc(var(--rec-mobile-nav-height, calc(64px + env(safe-area-inset-bottom, 0px))) + 88px);
+  }
+  .exam-toolbar {
+    position: sticky;
+    z-index: 30;
+    top: calc(var(--vp-nav-height, 64px) + 7px);
+    min-height: 52px;
+    margin: 0 -8px 8px;
+    padding: 7px 12px;
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 12px;
+    background: var(--vp-c-bg);
+    background: color-mix(in srgb, var(--vp-c-bg) 96%, transparent);
+    box-shadow: 0 8px 24px rgb(15 23 42 / 10%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .exam-toolbar div {
+    display: grid;
+    gap: 1px;
+    font-size: .8rem;
+  }
+  .exam-toolbar > strong { font-size: 1.15rem; }
+  .question-actions {
+    position: fixed;
+    z-index: 50;
+    right: max(8px, env(safe-area-inset-right, 0px));
+    bottom: var(--rec-mobile-nav-height, calc(64px + env(safe-area-inset-bottom, 0px)));
+    left: max(8px, env(safe-area-inset-left, 0px));
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 8px;
+    border: 1px solid var(--vp-c-divider);
+    border-bottom: 0;
+    border-radius: 14px 14px 0 0;
+    background: var(--vp-c-bg);
+    background: color-mix(in srgb, var(--vp-c-bg) 97%, transparent);
+    box-shadow: 0 -8px 24px rgb(15 23 42 / 12%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .question-actions button {
+    min-height: 48px;
+    padding: 4px 6px;
+    border-radius: 10px;
+    font-size: .875rem;
+    line-height: 1.25;
+    touch-action: manipulation;
+  }
+  .question-card { padding: 20px 16px; }
+  .choice-list label { padding: 13px 12px; }
+  .domain-select select { font-size: 16px; }
+  .question-navigator > div { grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); }
+  .question-navigator button { min-height: 44px; font-size: 16px; touch-action: manipulation; }
+  :global(.dark) .exam-toolbar,
+  :global(.dark) .question-actions {
+    background: var(--vp-c-bg);
+    background: color-mix(in srgb, var(--vp-c-bg) 97%, transparent);
+    box-shadow: 0 -8px 26px rgb(0 0 0 / 34%);
+  }
+}
+@media (max-width: 359px) {
+  .question-actions { right: 4px; left: 4px; gap: 4px; padding: 6px 4px; }
+  .question-actions button { padding: 3px; font-size: .8rem; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .exam-toolbar,
+  .question-actions {
+    background: var(--vp-c-bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 @media (prefers-reduced-motion: reduce) { .quiz-progress span { transition: none; } }
 </style>

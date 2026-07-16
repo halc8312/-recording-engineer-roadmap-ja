@@ -42,7 +42,7 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo.svg',
     nav: [
-      { text: '進捗', link: '/progress' },
+      { text: '学習ホーム', link: '/progress' },
       { text: '12週間', link: '/ROADMAP' },
       {
         text: '理論',
@@ -63,6 +63,7 @@ export default defineConfig({
           text: 'JAPRS独学コース',
           items: [
             { text: 'コース案内', link: '/exam/' },
+            { text: '初学者3分ガイド', link: '/exam/beginner-guide' },
             { text: '過去問1,300問分析', link: '/exam/past-exam-analysis' },
             { text: '16週間プラン', link: '/exam/study-plan' },
             { text: '出題範囲カバレッジ', link: '/exam/coverage' },
@@ -105,8 +106,10 @@ export default defineConfig({
           text: 'スタート',
           items: [
             { text: 'ホーム', link: '/' },
-            { text: '学習ダッシュボード', link: '/progress' },
+            { text: '統合学習ホーム', link: '/progress' },
+            { text: '実務12週トラッカー', link: '/band-study-plan' },
             { text: '12週間ロードマップ', link: '/ROADMAP' },
+            { text: 'JAPRS初学者3分ガイド', link: '/exam/beginner-guide' },
             { text: 'JAPRS独学コース', link: '/exam/' }
           ]
         },

@@ -1,4 +1,10 @@
+<script setup lang="ts">
+import LessonResume from '../.vitepress/theme/components/LessonResume.vue'
+</script>
+
 # 05 音楽理論・譜面・楽器
+
+<LessonResume lesson-path="/exam/05-music-theory-instruments" lesson-title="音楽理論・譜面・楽器" />
 
 ## この章の目標
 
@@ -10,7 +16,7 @@
 
 音域は演奏者、楽器、奏法、時代、楽譜の表記法で変わります。この章の音域表は**一般的な実音のおおよその目安**であり、編曲の保証範囲ではありません。実際のsessionでは演奏者とscoreを確認します。
 
-## 1. 五線と音の位置
+## 1. 五線と音の位置 {#week-12-start}
 
 ### 音名の対応
 
@@ -297,7 +303,7 @@ cents = 1200 × log2(f2 / f1)
 
 piccoloは記譜より1 octave上、double bassとguitarは慣例上、記譜より1 octave下に響きます。DAWのevent表示がconcert pitchかwritten pitchかを確認してください。
 
-## 10. 弦楽器
+## 10. 弦楽器 {#week-13-start}
 
 ### bowed strings
 

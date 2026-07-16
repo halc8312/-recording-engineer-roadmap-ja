@@ -1,4 +1,10 @@
+<script setup lang="ts">
+import LessonResume from '../.vitepress/theme/components/LessonResume.vue'
+</script>
+
 # JAPRS独学 03：スタジオシステム・コンソール・テープ・モニター
+
+<LessonResume lesson-path="/exam/03-studio-systems" lesson-title="スタジオシステム" />
 
 ## この章のねらい
 
@@ -23,7 +29,7 @@ studioでは、良いmicrophoneやpluginを知っているだけでは足りま�
 > [!NOTE]
 > 2026年度の公式出題範囲と2022〜2025年の公開問題から必要概念を抽出し、現代のCubase＋MOTU M2環境にも結びつくよう再構成した独自教材です。公式教材や公開問題の文章・図・設問は転載していません。console、patchbay、meterは機種や規格で動作が異なるため、最後は必ず実機manualを優先してください。
 
-## 0. マイクロホン、デジタル音声、エフェクター
+## 0. マイクロホン、デジタル音声、エフェクター {#week-7-start}
 
 この三つは後のsignal flowを読むための前提です。方式名を「音が良い順」に並べず、**何を変換し、何を測り、どのparameterで何を変えるか**から整理します。
 
@@ -241,7 +247,7 @@ analog voltage levelの代表表記：
 
 </details>
 
-## 2. level、cable、connector
+## 2. level、cable、connector {#week-6-start}
 
 ### 2.1 4つのanalog level
 
@@ -647,7 +653,7 @@ studioが1 kHz sineの`-18 dBFS`をD/Aから出し、それをanalog側`+4 dBu =
 
 </details>
 
-## 6. analog tape recorder
+## 6. analog tape recorder {#week-8-start}
 
 ### 6.1 何を記録するか
 
